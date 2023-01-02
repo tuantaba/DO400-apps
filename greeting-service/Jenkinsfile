@@ -21,6 +21,15 @@ pipeline{
             }
         }
 
-        // Add the "Deploy" stage here
+        stage("Deploy"){
+            steps{ 
+                sh '''
+                    oc project ngiekw-deploy-strategies
+                    oc start-build greeting-service --follow --wait
+                '''
+            }
+        }
+
+
     }
 }
